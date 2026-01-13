@@ -1,4 +1,4 @@
-# ☕ Coffee Bean Sales Analysis Dashboard
+# ☕ Coffee Sales Analysis Dashboard
 
 ## 📊 Project Overview
 This project is a comprehensive sales performance analysis for a coffee retailer. It transforms raw, fragmented data into an interactive and visually appealing dashboard to drive data-informed business decisions.
