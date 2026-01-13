@@ -8,7 +8,7 @@ This project is a comprehensive sales performance analysis for a coffee retailer
 ## 🖥️ Interactive Dashboard Preview
 The dashboard provides a high-level overview of sales trends, geographical performance, and customer behavior.
 
-![Coffee Sales Dashboard](Screenshot%202026-01-13%20000820.png)
+![Coffee Sales Dashboard](dashboard.png)
 *Figure 1: Full Interactive Coffee Sales Dashboard*
 
 ### Key Dashboard Features:
@@ -25,13 +25,13 @@ To build this robust data model, I utilized advanced Excel functions to clean, m
 ### 1. Two-Dimensional Lookup (INDEX & MATCH)
 I used a manual **INDEX & MATCH** combination to perform a 2D lookup. This dynamically fetches product details by matching both the Product ID (rows) and the specific attribute header (columns).
 
-![INDEX MATCH Formula](ggggggggggggggg.png)
+![INDEX MATCH Formula](index_match_formula.png)
 *Formula: `=INDEX(products!$A:$G, MATCH(orders!$D2, products!$A:$A, 0), MATCH(orders!$I$1, products!$A$1:$E$1, 0))`*
 
 ### 2. Efficient Data Mapping (XLOOKUP)
 To retrieve customer-specific information (like loyalty status or email) based on their unique ID, I implemented the **XLOOKUP** function for better performance and error handling.
 
-![XLOOKUP Formula](Screenshot%202026-01-13%20174513.png)
+![XLOOKUP Formula](xlookup_formula.png)
 *Formula: `=XLOOKUP($C2, customers!$A:$A, customers!$G:$G, "", 0, 1)`*
 
 ### 3. Data Standardization (Nested IFs)
