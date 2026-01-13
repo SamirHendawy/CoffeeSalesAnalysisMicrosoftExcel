@@ -1,49 +1,61 @@
-# ☕ Coffee Sales Analysis Dashboard
+# ☕ Coffee Bean Sales Analysis Dashboard
 
 ## 📊 Project Overview
 This project is a comprehensive sales performance analysis for a coffee retailer. It transforms raw, fragmented data into an interactive and visually appealing dashboard to drive data-informed business decisions.
 
 ---
 
-## 🖥️ Dashboard Preview
-![Coffee Sales Dashboard](dashboard.png)
-*Figure 1: The Interactive Coffee Sales Dashboard*
+## 🖥️ Interactive Dashboard Preview
+The dashboard provides a high-level overview of sales trends, geographical performance, and customer behavior.
+
+![Coffee Sales Dashboard](Screenshot%202026-01-13%20000820.png)
+*Figure 1: Full Interactive Coffee Sales Dashboard*
+
+### Key Dashboard Features:
+- **Geographical Analysis:** Visualizing revenue across the US, Ireland, and the UK.
+- **Customer Insights:** Identifying the top 5 most valuable customers.
+- **Dynamic Filtering:** Slicers for **Roast Type**, **Package Size**, and **Loyalty Card** status.
+- **Timeline Slicer:** Filtering sales data across years (2019-2022) and months.
 
 ---
 
-## 🛠️ Technical Challenges & Solutions
+## 🛠️ Technical Implementation & Formulas
+To build this robust data model, I utilized advanced Excel functions to clean, map, and categorize data.
 
-### 1. Multi-Dimensional Data Retrieval
-One of the key technical hurdles was merging data based on multiple criteria across different tables. Standard lookup functions were insufficient for the complex relationships between the Orders and Products datasets.
+### 1. Two-Dimensional Lookup (INDEX & MATCH)
+I used a manual **INDEX & MATCH** combination to perform a 2D lookup. This dynamically fetches product details by matching both the Product ID (rows) and the specific attribute header (columns).
 
-**Solution:** I implemented a **2D Lookup** using a manual **INDEX & MATCH** combination. This allowed for dynamic searching across both rows and columns simultaneously.
+![INDEX MATCH Formula](ggggggggggggggg.png)
+*Formula: `=INDEX(products!$A:$G, MATCH(orders!$D2, products!$A:$A, 0), MATCH(orders!$I$1, products!$A$1:$E$1, 0))`*
 
-![INDEX MATCH Formula](index_match_formula.png)
-*Formula: Using INDEX/MATCH to dynamically fetch product data based on header names.*
+### 2. Efficient Data Mapping (XLOOKUP)
+To retrieve customer-specific information (like loyalty status or email) based on their unique ID, I implemented the **XLOOKUP** function for better performance and error handling.
 
-### 2. Efficient Data Mapping
-To ensure high performance and accuracy in linking customer data, I utilized the **XLOOKUP** function.
+![XLOOKUP Formula](Screenshot%202026-01-13%20174513.png)
+*Formula: `=XLOOKUP($C2, customers!$A:$A, customers!$G:$G, "", 0, 1)`*
 
-![XLOOKUP Formula](xlookup_formula.png)
-*Formula: Efficiently retrieving customer details using XLOOKUP.*
+### 3. Data Standardization (Nested IFs)
+To ensure the dashboard displays user-friendly product names instead of raw abbreviations, I used **Nested IF statements** to categorize coffee types.
+
+![Nested IF Formula](ifs.png)
+*Formula: `=IF($I2="Rob","Robusta",IF($I2="Exc","Excelsa",IF($I2="Ara","Arabica",IF($I2="Lib","Liberica",""))))`*
 
 ---
 
 ## 📈 Key Insights & Business Analysis
-Based on the analyzed data (2019 - 2022), the following insights were discovered:
+Based on the dashboard results:
 
-* **Market Dominance:** The **United States** is the primary revenue driver, contributing **$35,639** in total sales, which significantly outperforms other regions like Ireland ($6,697) and the UK ($2,799).
-* **Customer Loyalty:** Identified the **Top 5 Customers**, with **Alis Wilmore** leading at **$317** in total spending. This data helps in designing VIP loyalty programs.
-* **Product Performance:** Sales trends show significant volatility. Notably, **Arabica** and **Liberica** beans frequently hit peak sales volumes, indicating high demand during specific seasons.
-* **Strategic Filtering:** The dashboard enables real-time filtering by **Roast Type** (Dark, Light, Medium) and **Package Size** (0.2kg to 2.5kg) to pinpoint specific niche market demands.
+* **Market Share:** The **United States** is the dominant market, contributing **$35,639** in total sales.
+* **Top Customer:** **Alis Wilmore** is the highest-spending customer with a total of **$317**.
+* **Sales Trends:** The line chart shows significant volatility in sales over time, with notable peaks in late 2021 and early 2022 for types like **Arabica** and **Liberica**.
 
 ---
 
-## 🚀 Features
-- **Dynamic Slicers:** Instant filtering by Roast Type, Size, and Loyalty Card status.
-- **Interactive Timeline:** A dedicated slider to track sales fluctuations over a 4-year period.
-- **Automated Data Pipeline:** Built using Excel Tables to allow for one-click updates (`Refresh All`) when new data is added.
+## 🚀 Skills Demonstrated
+- **Advanced Excel Formulas:** INDEX/MATCH, XLOOKUP, Nested IFs.
+- **Data Visualization:** Creating professional charts, slicers, and timelines.
+- **ETL Process:** Cleaning and organizing raw data into a structured format for analysis.
 
-## 📂 Tools Used
-- **Microsoft Excel:** Advanced Formulas (INDEX/MATCH, XLOOKUP), Pivot Tables, Pivot Charts.
-- **Data Visualization:** Interactive Dashboards, Slicers, and Timelines.
+## 📂 Files in this Repository
+- `coffeeOrdersDataProject.xlsx`: The final workbook containing the data model and dashboard.
+- `Raw Data.xlsx`: The original datasets used for the project.
